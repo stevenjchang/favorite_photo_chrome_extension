@@ -1,3 +1,4 @@
+/*global chrome*/
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PhotoList from './PhotoList';
@@ -14,6 +15,7 @@ const Router = () => {
   const [ favoritePhotos, setFavoritePhotos ] = useState({});
   const [ apiData, setApiData ] = useState([]);
 
+  // fetch apiData on ComponentDidMount
   useEffect(() => {
     axios.get(constants.PHOTOS_URL)
     .then((response) => {
@@ -21,6 +23,15 @@ const Router = () => {
       setApiData(truncatedData);
     })
   }, [])
+
+  // look up local storage for saved favoritePhotos on ComponentDidMount
+  useEffect(() => {
+    chrome.storage.local.get("favoritePhotos", function(result) {
+      if (result.favoritePhotos) {
+        setFavoritePhotos(JSON.parse(result.favoritePhotos));
+      }
+    });
+  }, []);
 
   const handleChangeRoute = (componentName, photoId) => {
     setPhotoIdToRender(photoId);
@@ -31,6 +42,9 @@ const Router = () => {
     let updatedFavoritePhotos = Object.assign({}, favoritePhotos);
     updatedFavoritePhotos[photoId] = !favoritePhotos[photoId]
     setFavoritePhotos(updatedFavoritePhotos);
+    chrome.storage.local.set({
+      favoritePhotos: JSON.stringify(updatedFavoritePhotos)
+    });
   }
 
   return (
@@ -43,7 +57,6 @@ const Router = () => {
           handleChangeRoute={handleChangeRoute}
         />
       )}
-
       {componentToRender === "PhotoListSingle" && (
         <PhotoListSingle
           photoIdToRender={photoIdToRender}
