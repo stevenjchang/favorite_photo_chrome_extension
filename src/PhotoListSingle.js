@@ -1,17 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PhotoListSingle = ({ photoIdToRender, handleChangeRoute }) => {
+const PhotoListSingle = ({ singlePhotoInfo, handleChangeRoute }) => {
+  const { id, title, url } = singlePhotoInfo;
+
   return (
     <>
       <button
-        onClick={photoIdToRender =>
+        onClick={() =>
           handleChangeRoute("PhotoList", null)
         }
       >
-        Return to Home
+        Back
       </button>
-      <h4>Single: photoId: {photoIdToRender}</h4>
+      <h4>Photo ID: {id}</h4>
+      <img
+        alt={`${title}`}
+        src={url}
+        style={{ width: "285px", height: "250px" }}
+      />
+      <br />
+      <h3>{title}</h3>
+      <br />
     </>
   );
 };

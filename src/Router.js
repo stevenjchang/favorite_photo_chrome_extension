@@ -47,6 +47,11 @@ const Router = () => {
     });
   }
 
+  const _calculateSinglePhotoInfo = (photoId) => {
+    let targetPhotoInfo = apiData.filter(photo => photoId === photo.id);
+    return targetPhotoInfo.length > 0 ? targetPhotoInfo[0] : {};
+  }
+
   return (
     <>
       {componentToRender === "PhotoList" && (
@@ -59,7 +64,7 @@ const Router = () => {
       )}
       {componentToRender === "PhotoListSingle" && (
         <PhotoListSingle
-          photoIdToRender={photoIdToRender}
+          singlePhotoInfo={_calculateSinglePhotoInfo(photoIdToRender)}
           handleChangeRoute={handleChangeRoute}
         />
       )}
