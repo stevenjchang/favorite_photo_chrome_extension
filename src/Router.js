@@ -24,13 +24,13 @@ const Router = () => {
   }, [])
 
   // look up local storage for saved favoritePhotos on ComponentDidMount
-  // useEffect(() => {
-  //   chrome.storage.local.get("favoritePhotos", function(result) {
-  //     if (result.favoritePhotos) {
-  //       setFavoritePhotos(JSON.parse(result.favoritePhotos));
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    chrome.storage.local.get("favoritePhotos", function(result) {
+      if (result.favoritePhotos) {
+        setFavoritePhotos(JSON.parse(result.favoritePhotos));
+      }
+    });
+  }, []);
 
   const handleChangeRoute = (componentName, photoId) => {
     setPhotoIdToRender(photoId);
@@ -41,9 +41,9 @@ const Router = () => {
     let updatedFavoritePhotos = Object.assign({}, favoritePhotos);
     updatedFavoritePhotos[photoId] = !favoritePhotos[photoId]
     setFavoritePhotos(updatedFavoritePhotos);
-    // chrome.storage.local.set({
-    //   favoritePhotos: JSON.stringify(updatedFavoritePhotos)
-    // });
+    chrome.storage.local.set({
+      favoritePhotos: JSON.stringify(updatedFavoritePhotos)
+    });
   }
 
   const _calculateSinglePhotoInfo = (photoId) => {
