@@ -1,35 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PhotoList from './PhotoList';
 import PhotoListSingle from './PhotoListSingle';
+import axios from 'axios';
 
-const dummyJson = [
-  {
-    albumId: 1,
-    id: 1,
-    title: "accusamus beatae ad facilis cum similique qui sunt",
-    url: "https://via.placeholder.com/600/92c952",
-    thumbnailUrl: "https://via.placeholder.com/150/92c952"
-  },
-  {
-    albumId: 1,
-    id: 2,
-    title: "reprehenderit est deserunt velit ipsam",
-    url: "https://via.placeholder.com/600/771796",
-    thumbnailUrl: "https://via.placeholder.com/150/771796"
-  },
-  {
-    albumId: 1,
-    id: 3,
-    title: "officia porro iure quia iusto qui ipsa ut modi",
-    url: "https://via.placeholder.com/600/24f355",
-    thumbnailUrl: "https://via.placeholder.com/150/24f355"
-  }
-];
+const constants = {
+  PHOTOS_URL: "https://jsonplaceholder.typicode.com/photos",
+}
 
 const Router = () => {
   const [componentToRender, setComponentToRender] = useState('PhotoList');
   const [photoIdToRender, setPhotoIdToRender] = useState();
+  const [ apiData, setApiData ] = useState([]);
+
+  useEffect(() => {
+    axios.get(constants.PHOTOS_URL)
+    .then((response) => {
+      setApiData(response.data);
+    })
+  }, [])
 
   const handleChangeRoute = (componentName, photoId) => {
     setPhotoIdToRender(photoId);
@@ -39,7 +28,7 @@ const Router = () => {
   return (
     <>
       {componentToRender === "PhotoList" && (
-        <PhotoList photos={dummyJson} handleChangeRoute={handleChangeRoute} />
+        <PhotoList photos={apiData} handleChangeRoute={handleChangeRoute} />
       )}
 
       {componentToRender === "PhotoListSingle" && (
