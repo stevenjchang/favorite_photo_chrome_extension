@@ -16,7 +16,8 @@ const Router = () => {
   useEffect(() => {
     axios.get(constants.PHOTOS_URL)
     .then((response) => {
-      setApiData(response.data);
+      const truncatedData = response.data.slice(0, 20);
+      setApiData(truncatedData);
     })
   }, [])
 
