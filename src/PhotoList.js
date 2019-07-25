@@ -16,6 +16,7 @@ const PhotoList = ({
     <>
       {photos.map(photoInfo => (
         <PhotoListItem
+          key={photoInfo.id}
           isFavorite={_calculateIsFavorite(photoInfo.id, favoritePhotos)}
           photoInfo={photoInfo}
           handleChangeRoute={handleChangeRoute}
@@ -27,7 +28,6 @@ const PhotoList = ({
 };
 
 PhotoList.propTypes = {
-
-}
+};
 
 export default PhotoList;
