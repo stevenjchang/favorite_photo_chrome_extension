@@ -28,6 +28,10 @@ const PhotoList = ({
 };
 
 PhotoList.propTypes = {
+  favoritePhotos: PropTypes.object,
+  handleChangeRoute: PropTypes.func,
+  photos: PropTypes.array,
+  toggleFavoritePhoto: PropTypes.func
 };
 
 export default PhotoList;

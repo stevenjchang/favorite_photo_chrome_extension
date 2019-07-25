@@ -47,7 +47,10 @@ const PhotoListItem = ({
 };
 
 PhotoListItem.propTypes = {
-
-}
+  handleChangeRoute: PropTypes.func,
+  isFavorite: PropTypes.bool,
+  photoInfo: PropTypes.object,
+  toggleFavoritePhoto: PropTypes.func,
+};
 
 export default PhotoListItem;
