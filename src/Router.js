@@ -47,6 +47,15 @@ const Router = () => {
     });
   }
 
+  const _calculateSinglePhotoInfo = (photoId) => {
+    let targetPhotoInfo = apiData.filter(photo => photoId === photo.id);
+    return targetPhotoInfo.length > 0 ? targetPhotoInfo[0] : {};
+  }
+
+  const _calculateIsFavorite = (photoId, favoritePhotos) => {
+    return favoritePhotos[photoId] === true;
+  };
+
   return (
     <>
       {componentToRender === "PhotoList" && (
@@ -59,8 +68,10 @@ const Router = () => {
       )}
       {componentToRender === "PhotoListSingle" && (
         <PhotoListSingle
-          photoIdToRender={photoIdToRender}
+          singlePhotoInfo={_calculateSinglePhotoInfo(photoIdToRender)}
           handleChangeRoute={handleChangeRoute}
+          isFavorite={_calculateIsFavorite(photoIdToRender, favoritePhotos)}
+          toggleFavoritePhoto={toggleFavoritePhoto}
         />
       )}
     </>
