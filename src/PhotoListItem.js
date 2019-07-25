@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PhotoListItem = ({ photoId, handleChangeRoute }) => {
+const PhotoListItem = ({ photoInfo, handleChangeRoute }) => {
   return (
     <>
-      <button onClick={() => handleChangeRoute('PhotoListSingle', photoId)}>ChangeRoute</button>
+      <button
+        onClick={() => handleChangeRoute("PhotoListSingle", photoInfo.id)}
+      >
+        ChangeRoute
+      </button>
+      <p>{photoInfo.title}</p>
+      <p>{}</p>
     </>
   );
 };

@@ -5,9 +5,9 @@ import PhotoListItem from './PhotoListItem';
 const PhotoList = ({ photos, handleChangeRoute }) => {
   return (
     <>
-      {photos.map(photo => (
+      {photos.map(photoInfo => (
         <PhotoListItem
-          photoId={photo.id}
+          photoInfo={photoInfo}
           handleChangeRoute={handleChangeRoute}
         />
       ))}
