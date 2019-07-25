@@ -9,9 +9,6 @@
     "32": "icons/heart-unfilled-32x32.png",
     "128": "icons/heart-unfilled-128x128.png"
   },
-  "chrome_url_overrides": {
-    "newtab": "index.html"
-  },
   "browser_action": {
     "default_popup": "index.html"
   },
