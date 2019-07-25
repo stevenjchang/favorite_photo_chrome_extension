@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const truncateTitle = (title) => title.slice(0, 35)
 
-const PhotoListItem = ({ photoInfo, handleChangeRoute }) => {
+const PhotoListItem = ({ photoInfo, handleChangeRoute, isFavorite }) => {
   const { id, title, url } = photoInfo;
   return (
     <div style={{ marginBottom: "35px" }}>
@@ -21,11 +21,12 @@ const PhotoListItem = ({ photoInfo, handleChangeRoute }) => {
         />
       </div>
       <div style={{ marginTop: "10px" }}>
-        <img
-          alt="Add to Favorites"
-          src={"/icons/heart-filled-16x16.png"}
-          // style={{color: 'red', backgroundColor: 'blue'}}
-        />
+        {isFavorite && (
+          <img alt="Add to Favorites" src={"/icons/heart-filled-16x16.png"} />
+        )}
+        {!isFavorite && (
+          <img alt="Add to Favorites" src={"/icons/heart-unfilled-16x16.png"} />
+        )}
       </div>
     </div>
   );
