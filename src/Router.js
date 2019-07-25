@@ -52,6 +52,10 @@ const Router = () => {
     return targetPhotoInfo.length > 0 ? targetPhotoInfo[0] : {};
   }
 
+  const _calculateIsFavorite = (photoId, favoritePhotos) => {
+    return favoritePhotos[photoId] === true;
+  };
+
   return (
     <>
       {componentToRender === "PhotoList" && (
@@ -66,6 +70,8 @@ const Router = () => {
         <PhotoListSingle
           singlePhotoInfo={_calculateSinglePhotoInfo(photoIdToRender)}
           handleChangeRoute={handleChangeRoute}
+          isFavorite={_calculateIsFavorite(photoIdToRender, favoritePhotos)}
+          toggleFavoritePhoto={toggleFavoritePhoto}
         />
       )}
     </>
