@@ -5,9 +5,9 @@
   "version": "1.0.1",
   "description": "Chrome extension demo project",
   "icons": {
-    "16": "16x16.png",
-    "32": "32x32.png",
-    "128": "128x128.png"
+    "16": "icons/heart-unfilled-16x16.png",
+    "32": "icons/heart-unfilled-32x32.png",
+    "128": "icons/heart-unfilled-128x128.png"
   },
   "chrome_url_overrides": {
     "newtab": "index.html"
