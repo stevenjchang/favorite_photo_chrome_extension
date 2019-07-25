@@ -9,13 +9,9 @@ const constants = {
 }
 
 const Router = () => {
-  const [componentToRender, setComponentToRender] = useState('PhotoList');
-  const [photoIdToRender, setPhotoIdToRender] = useState();
-  const [favoritePhotos, setFavoritePhotos] = useState({
-    '1': true,
-    '2': false,
-    '3': true,
-  });
+  const [ componentToRender, setComponentToRender ] = useState('PhotoList');
+  const [ photoIdToRender, setPhotoIdToRender ] = useState();
+  const [ favoritePhotos, setFavoritePhotos ] = useState({});
   const [ apiData, setApiData ] = useState([]);
 
   useEffect(() => {

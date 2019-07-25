@@ -3,8 +3,14 @@ import PropTypes from 'prop-types';
 
 const truncateTitle = (title) => title.slice(0, 35)
 
-const PhotoListItem = ({ photoInfo, handleChangeRoute, isFavorite }) => {
+const PhotoListItem = ({
+  handleChangeRoute,
+  isFavorite,
+  photoInfo,
+  toggleFavoritePhoto,
+}) => {
   const { id, title, url } = photoInfo;
+
   return (
     <div style={{ marginBottom: "35px" }}>
       <div>
@@ -22,10 +28,18 @@ const PhotoListItem = ({ photoInfo, handleChangeRoute, isFavorite }) => {
       </div>
       <div style={{ marginTop: "10px" }}>
         {isFavorite && (
-          <img alt="Add to Favorites" src={"/icons/heart-filled-16x16.png"} />
+          <img
+            alt="Add to Favorites"
+            src={"/icons/heart-filled-16x16.png"}
+            onClick={() => toggleFavoritePhoto(id)}
+          />
         )}
         {!isFavorite && (
-          <img alt="Add to Favorites" src={"/icons/heart-unfilled-16x16.png"} />
+          <img
+            alt="Add to Favorites"
+            src={"/icons/heart-unfilled-16x16.png"}
+            onClick={() => toggleFavoritePhoto(id)}
+          />
         )}
       </div>
     </div>
