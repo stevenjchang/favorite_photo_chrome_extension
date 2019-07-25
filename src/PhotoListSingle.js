@@ -45,7 +45,10 @@ const PhotoListSingle = ({
 };
 
 PhotoListSingle.propTypes = {
-
-}
+  singlePhotoInfo: PropTypes.object,
+  handleChangeRoute: PropTypes.func,
+  isFavorite: PropTypes.bool,
+  toggleFavoritePhoto: PropTypes.func,
+};
 
 export default PhotoListSingle;
