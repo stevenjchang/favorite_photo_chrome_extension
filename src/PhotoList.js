@@ -2,13 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PhotoListItem from './PhotoListItem';
 
-const PhotoList = ({ photos, handleChangeRoute }) => {
+const PhotoList = ({
+  favoritePhotos,
+  handleChangeRoute,
+  photos,
+  toggleFavoritePhoto,
+}) => {
+  const _calculateIsFavorite = (photoId, favoritePhotos) => {
+    return favoritePhotos[photoId] === true;
+  }
+
   return (
     <>
       {photos.map(photoInfo => (
         <PhotoListItem
+          isFavorite={_calculateIsFavorite(photoInfo.id, favoritePhotos)}
           photoInfo={photoInfo}
           handleChangeRoute={handleChangeRoute}
+          toggleFavoritePhoto={toggleFavoritePhoto}
         />
       ))}
     </>

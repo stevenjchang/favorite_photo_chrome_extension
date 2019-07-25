@@ -9,8 +9,9 @@ const constants = {
 }
 
 const Router = () => {
-  const [componentToRender, setComponentToRender] = useState('PhotoList');
-  const [photoIdToRender, setPhotoIdToRender] = useState();
+  const [ componentToRender, setComponentToRender ] = useState('PhotoList');
+  const [ photoIdToRender, setPhotoIdToRender ] = useState();
+  const [ favoritePhotos, setFavoritePhotos ] = useState({});
   const [ apiData, setApiData ] = useState([]);
 
   useEffect(() => {
@@ -26,10 +27,21 @@ const Router = () => {
     setComponentToRender(componentName);
   }
 
+  const toggleFavoritePhoto = (photoId) => {
+    let updatedFavoritePhotos = Object.assign({}, favoritePhotos);
+    updatedFavoritePhotos[photoId] = !favoritePhotos[photoId]
+    setFavoritePhotos(updatedFavoritePhotos);
+  }
+
   return (
     <>
       {componentToRender === "PhotoList" && (
-        <PhotoList photos={apiData} handleChangeRoute={handleChangeRoute} />
+        <PhotoList
+          photos={apiData}
+          favoritePhotos={favoritePhotos}
+          toggleFavoritePhoto={toggleFavoritePhoto}
+          handleChangeRoute={handleChangeRoute}
+        />
       )}
 
       {componentToRender === "PhotoListSingle" && (
