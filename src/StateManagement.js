@@ -8,7 +8,7 @@ const constants = {
   PHOTOS_URL: "https://jsonplaceholder.typicode.com/photos",
 }
 
-const Router = () => {
+const StateManagement = () => {
   const [ componentToRender, setComponentToRender ] = useState('PhotoList');
   const [ photoIdToRender, setPhotoIdToRender ] = useState();
   const [ favoritePhotos, setFavoritePhotos ] = useState({});
@@ -80,4 +80,4 @@ const Router = () => {
   );
 }
 
-export default Router;
+export default StateManagement;
