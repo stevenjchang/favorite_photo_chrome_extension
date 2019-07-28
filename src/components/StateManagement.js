@@ -21,7 +21,7 @@ const StateManagement = () => {
     .catch((err) => {
       console.log('Error: api request failed ==>', err);
     })
-  }, [])
+  }, []);
 
   // look up local storage for saved favoritePhotos on ComponentDidMount
   useEffect(() => {
@@ -35,7 +35,7 @@ const StateManagement = () => {
   const handleChangeRoute = (componentName, photoId) => {
     setPhotoIdToRender(photoId);
     setComponentToRender(componentName);
-  }
+  };
 
   const toggleFavoritePhoto = (photoId) => {
     let updatedFavoritePhotos = Object.assign({}, favoritePhotos);
@@ -44,12 +44,12 @@ const StateManagement = () => {
     chrome.storage.local.set({
       favoritePhotos: JSON.stringify(updatedFavoritePhotos)
     });
-  }
+  };
 
   const _calculateSinglePhotoInfo = (photoId, allPhotos) => {
     let targetPhotoInfo = allPhotos.filter(photo => photoId === photo.id);
     return targetPhotoInfo.length > 0 ? targetPhotoInfo[0] : {};
-  }
+  };
 
   const _calculateIsFavorite = (photoId, favoritePhotos) => {
     return favoritePhotos[photoId] === true;
@@ -78,6 +78,6 @@ const StateManagement = () => {
       )}
     </>
   );
-}
+};
 
 export default StateManagement;
