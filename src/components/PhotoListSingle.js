@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { PHOTO_LIST } from '../constants';
 
 const PhotoListSingle = ({
   singlePhotoInfo,
@@ -8,12 +9,12 @@ const PhotoListSingle = ({
   toggleFavoritePhoto
 }) => {
   const { id, title, url } = singlePhotoInfo;
+  const handleToggleFavoritePhoto = () => toggleFavoritePhoto(id);
+  const handleOnClickChangeRoute = () => handleChangeRoute(PHOTO_LIST, null);
 
   return (
     <>
-      <button onClick={() => handleChangeRoute("PhotoList", null)}>
-        Back
-      </button>
+      <button onClick={handleOnClickChangeRoute}>Back</button>
       <h4>Photo ID: {id}</h4>
       <h3>{title}</h3>
       <img
@@ -27,14 +28,14 @@ const PhotoListSingle = ({
           <img
             alt="Add to Favorites"
             src={"/icons/heart-filled-16x16.png"}
-            onClick={() => toggleFavoritePhoto(id)}
+            onClick={handleToggleFavoritePhoto}
           />
         )}
         {!isFavorite && (
           <img
             alt="Add to Favorites"
             src={"/icons/heart-unfilled-16x16.png"}
-            onClick={() => toggleFavoritePhoto(id)}
+            onClick={handleToggleFavoritePhoto}
           />
         )}
       </div>
