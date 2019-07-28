@@ -11,6 +11,8 @@ const PhotoListItem = ({
   toggleFavoritePhoto,
 }) => {
   const { id, title, url } = photoInfo;
+  const handleToggleFavoritePhoto = () => toggleFavoritePhoto(id);
+  const handleOnClickChangeRoute = () => handleChangeRoute(PHOTO_LIST_SINGLE, id);
 
   return (
     <div style={{ marginBottom: "35px" }}>
@@ -24,7 +26,7 @@ const PhotoListItem = ({
           alt={`${title}`}
           src={url}
           style={{ width: "250px", height: "150px" }}
-          onClick={() => handleChangeRoute(PHOTO_LIST_SINGLE, id)}
+          onClick={handleOnClickChangeRoute}
         />
       </div>
       <div style={{ marginTop: "10px" }}>
@@ -32,14 +34,14 @@ const PhotoListItem = ({
           <img
             alt="Add to Favorites"
             src={"/icons/heart-filled-16x16.png"}
-            onClick={() => toggleFavoritePhoto(id)}
+            onClick={handleToggleFavoritePhoto}
           />
         )}
         {!isFavorite && (
           <img
             alt="Add to Favorites"
             src={"/icons/heart-unfilled-16x16.png"}
-            onClick={() => toggleFavoritePhoto(id)}
+            onClick={handleToggleFavoritePhoto}
           />
         )}
       </div>
