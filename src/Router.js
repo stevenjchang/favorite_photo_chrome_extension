@@ -21,6 +21,9 @@ const Router = () => {
       const truncatedData = response.data.slice(0, 20);
       setApiData(truncatedData);
     })
+    .catch((err) => {
+      console.log('Error: api request failed ==>', err);
+    })
   }, [])
 
   // look up local storage for saved favoritePhotos on ComponentDidMount
@@ -46,8 +49,8 @@ const Router = () => {
     });
   }
 
-  const _calculateSinglePhotoInfo = (photoId) => {
-    let targetPhotoInfo = apiData.filter(photo => photoId === photo.id);
+  const _calculateSinglePhotoInfo = (photoId, allPhotos) => {
+    let targetPhotoInfo = allPhotos.filter(photo => photoId === photo.id);
     return targetPhotoInfo.length > 0 ? targetPhotoInfo[0] : {};
   }
 
@@ -67,7 +70,7 @@ const Router = () => {
       )}
       {componentToRender === "PhotoListSingle" && (
         <PhotoListSingle
-          singlePhotoInfo={_calculateSinglePhotoInfo(photoIdToRender)}
+          singlePhotoInfo={_calculateSinglePhotoInfo(photoIdToRender, apiData)}
           handleChangeRoute={handleChangeRoute}
           isFavorite={_calculateIsFavorite(photoIdToRender, favoritePhotos)}
           toggleFavoritePhoto={toggleFavoritePhoto}
