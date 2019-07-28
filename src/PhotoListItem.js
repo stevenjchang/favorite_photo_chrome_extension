@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const truncateTitle = (title) => title.slice(0, 35)
+const _truncateTitle = title => title.slice(0, 35);
 
 const PhotoListItem = ({
   handleChangeRoute,
@@ -15,7 +15,7 @@ const PhotoListItem = ({
     <div style={{ marginBottom: "35px" }}>
       <div>
         <p style={{ display: "inline-block", marginLeft: "3px" }}>
-          {truncateTitle(title)}
+          {_truncateTitle(title)}
         </p>
       </div>
       <div>
