@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { PHOTO_LIST_SINGLE } from '../constants'
 
 const _truncateTitle = title => title.slice(0, 35);
 
@@ -23,7 +24,7 @@ const PhotoListItem = ({
           alt={`${title}`}
           src={url}
           style={{ width: "250px", height: "150px" }}
-          onClick={() => handleChangeRoute("PhotoListSingle", id)}
+          onClick={() => handleChangeRoute(PHOTO_LIST_SINGLE, id)}
         />
       </div>
       <div style={{ marginTop: "10px" }}>

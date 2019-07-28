@@ -3,20 +3,17 @@ import React, { useState, useEffect } from 'react';
 import PhotoList from './PhotoList';
 import PhotoListSingle from './PhotoListSingle';
 import axios from 'axios';
-
-const constants = {
-  PHOTOS_URL: "https://jsonplaceholder.typicode.com/photos",
-}
+import { PHOTOS_URL, PHOTO_LIST, PHOTO_LIST_SINGLE } from '../constants';
 
 const StateManagement = () => {
-  const [ componentToRender, setComponentToRender ] = useState('PhotoList');
+  const [ componentToRender, setComponentToRender ] = useState(PHOTO_LIST);
   const [ photoIdToRender, setPhotoIdToRender ] = useState();
   const [ favoritePhotos, setFavoritePhotos ] = useState({});
   const [ apiData, setApiData ] = useState([]);
 
   // fetch apiData on ComponentDidMount
   useEffect(() => {
-    axios.get(constants.PHOTOS_URL)
+    axios.get(PHOTOS_URL)
     .then((response) => {
       const truncatedData = response.data.slice(0, 20);
       setApiData(truncatedData);
@@ -60,7 +57,7 @@ const StateManagement = () => {
 
   return (
     <>
-      {componentToRender === "PhotoList" && (
+      {componentToRender === PHOTO_LIST && (
         <PhotoList
           photos={apiData}
           favoritePhotos={favoritePhotos}
@@ -68,9 +65,12 @@ const StateManagement = () => {
           handleChangeRoute={handleChangeRoute}
         />
       )}
-      {componentToRender === "PhotoListSingle" && (
+      {componentToRender === PHOTO_LIST_SINGLE && (
         <PhotoListSingle
-          singlePhotoInfo={_calculateSinglePhotoInfo(photoIdToRender, apiData)}
+          singlePhotoInfo={_calculateSinglePhotoInfo(
+            photoIdToRender,
+            apiData
+          )}
           handleChangeRoute={handleChangeRoute}
           isFavorite={_calculateIsFavorite(photoIdToRender, favoritePhotos)}
           toggleFavoritePhoto={toggleFavoritePhoto}

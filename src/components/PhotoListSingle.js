@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { PHOTO_LIST } from '../constants';
 
 const PhotoListSingle = ({
   singlePhotoInfo,
@@ -11,7 +12,7 @@ const PhotoListSingle = ({
 
   return (
     <>
-      <button onClick={() => handleChangeRoute("PhotoList", null)}>
+      <button onClick={() => handleChangeRoute(PHOTO_LIST, null)}>
         Back
       </button>
       <h4>Photo ID: {id}</h4>
