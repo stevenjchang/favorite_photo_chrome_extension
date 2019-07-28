@@ -10,6 +10,7 @@ const StateManagement = () => {
   const [ photoIdToRender, setPhotoIdToRender ] = useState();
   const [ favoritePhotos, setFavoritePhotos ] = useState({});
   const [ apiData, setApiData ] = useState([]);
+  const [ showFavoritesOnly, setShowFavoritesOnly ] = useState(false);
 
   // fetch apiData on ComponentDidMount
   useEffect(() => {
@@ -55,11 +56,35 @@ const StateManagement = () => {
     return favoritePhotos[photoId] === true;
   };
 
+  const _calculatePhotosToShow = (favoritePhotos, allPhotos, showFavoritesOnly) => {
+    if (showFavoritesOnly) {
+      return allPhotos.filter(photo => {
+        return favoritePhotos[photo.id];
+      });
+    } else {
+      return allPhotos;
+    }
+  };
+
+  const toggleShowFavoriteOnly = () => {
+    setShowFavoritesOnly(!showFavoritesOnly);
+  }
+
   return (
     <>
+      {showFavoritesOnly && componentToRender === PHOTO_LIST && (
+        <button onClick={toggleShowFavoriteOnly}>Show All Photos</button>
+      )}
+      {!showFavoritesOnly && componentToRender === PHOTO_LIST && (
+        <button onClick={toggleShowFavoriteOnly}>Show Favorites Only</button>
+      )}
       {componentToRender === PHOTO_LIST && (
         <PhotoList
-          photos={apiData}
+          photos={_calculatePhotosToShow(
+            favoritePhotos,
+            apiData,
+            showFavoritesOnly
+          )}
           favoritePhotos={favoritePhotos}
           toggleFavoritePhoto={toggleFavoritePhoto}
           handleChangeRoute={handleChangeRoute}
