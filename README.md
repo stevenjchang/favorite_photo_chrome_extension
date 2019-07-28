@@ -30,3 +30,5 @@
  - test each helper function
  - test that functions that update state, that state is being updated in the way it is expected to
  - test favorites toggle updates the state correctly
+
+NOTE: most of the commit comments can be found the PRs, not the commits themselves
